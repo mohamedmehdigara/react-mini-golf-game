@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Course from './components/Course';
+import Scorecard from './components/Scorecard';
+import { Physics } from 'react-physics';
 
-function App() {
+const StyledApp = styled.div`
+  display: flex;
+  justify-content: space-between;
+  /* Add your main game page styling here */
+`;
+
+const App = () => {
+  const [physics, setPhysics] = useState(null);
+
+  React.useEffect(() => {
+    const physics = new Physics();
+    setPhysics(physics);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledApp>
+      <Physics ref={physics}>
+        <Course physics={physics} />
+      </Physics>
+      <Scorecard physics={physics} />
+    </StyledApp>
   );
-}
+};
 
 export default App;
+
