@@ -8,16 +8,24 @@ const StyledCourse = styled.div`
   background-color: green;
 `;
 
-const Course = () => {
+const Course = ({ physics }) => {
   const [currentHole, setCurrentHole] = useState(1);
 
   const handleHoleCompleted = () => {
+    // Check if the player has completed the course
+    if (currentHole === 18) {
+      // The player has completed the course!
+      // TODO: Show a victory screen or something
+      return;
+    }
+
     setCurrentHole(currentHole + 1);
   };
 
   return (
     <StyledCourse>
       <Hole
+        physics={physics}
         number={currentHole}
         onHoleCompleted={handleHoleCompleted}
       />
