@@ -1,13 +1,15 @@
 import React from 'react';
-import Course from './components/Course';
+import { Physics } from 'react-physics';
+import HoleContainer from './components/HoleContainer';
 
-const App = () => {
+function App() {
+  const physics = new Physics();
+
   return (
     <div>
-      <Course />
+      <HoleContainer physics={physics} />
     </div>
   );
-};
+}
 
 export default App;
-
