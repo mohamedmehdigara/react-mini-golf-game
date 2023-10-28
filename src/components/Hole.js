@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import  {render}  from 'react-dom';
 import styled from 'styled-components';
 import Physics from 'react-physics';
+
 
 const StyledHole = styled.div`
   width: 50px;
@@ -17,6 +19,8 @@ const Ball = styled.div`
 `;
 
 const Hole = ({ number, onHoleCompleted, physics }) => {
+  const holeRef = useRef(null);
+
   const [isBallInHole, setIsBallInHole] = useState(false);
 
   const handleBallCollision = (physics, object) => {
@@ -30,7 +34,9 @@ const Hole = ({ number, onHoleCompleted, physics }) => {
       physics.getScorecard().incrementScore();
 
       // Call the onHoleCompleted callback prop
-      onHoleCompleted();
+      if (onHoleCompleted) {
+        onHoleCompleted();
+      }
     }
   };
 
@@ -48,16 +54,24 @@ const Hole = ({ number, onHoleCompleted, physics }) => {
 
       // Add the golf ball to the physics world
       physics.addBody(ball);
+
+      // Call the render function to update the ball position
+      this.render();
     }
   }, [isBallInHole, physics]);
 
-  return (
-    <StyledHole>
-      <Physics onCollision={handleBallCollision}>
-        {isBallInHole ? null : <Ball />}
-      </Physics>
-    </StyledHole>
-  );
-};
+ 
+
+    return (
+      <React.Fragment>
+        <div ref={holeRef}>
+          <Physics onCollision={handleBallCollision}>
+            {isBallInHole ? null : <Ball />}
+          </Physics>
+        </div>
+      </React.Fragment>
+    );
+  };
+
 
 export default Hole;
