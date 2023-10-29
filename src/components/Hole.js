@@ -1,22 +1,15 @@
 // Hole.js
 
-import React, { useRef } from 'react';
-import { handleBallCollision, Ball } from './Ball';
-import physics from "react-physics";
+import React from 'react';
 
+const Hole = ({ number, onHoleCompleted, isBallInHole }) => {
+  // Removed code related to react-physics
 
-const Hole = ({ number, onHoleCompleted, physics, ref }) =>  {
-  const holeRef = useRef(null);
-
-  // Render the Hole component
   return (
-    <React.Fragment>
-      <div ref={holeRef}>
-        <Physics onCollision={handleBallCollision}>
-          <Ball />
-        </Physics>
-      </div>
-    </React.Fragment>
+    <div>
+      <div>{number}</div>
+      <div>{isBallInHole ? 'Ball in hole!' : ''}</div>
+    </div>
   );
 };
 

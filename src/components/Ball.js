@@ -2,7 +2,12 @@
 
 import React from 'react';
 
-const Ball = () => {
+export function handleBallCollision(physics, object) {
+    // ...
+  }
+  
+
+export const Ball = () => {
   return <div style={{ width: 10, height: 10, backgroundColor: 'red', borderRadius: '50%' }} />;
 };
 

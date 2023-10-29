@@ -1,21 +1,28 @@
+// HoleContainer.js
+
 import React, { useState, useEffect, useRef } from 'react';
-import Physics from 'react-physics';
+import HoleState from "./HoleState";
 
-const HoleState = ({ number, onHoleCompleted }) => {
-  // ...
-};
-
-const HoleContainer = ({ physics }) => {
+const HoleContainer = ({  }) => {
   const holeRef = useRef(null);
 
   useEffect(() => {
     const holeElement = holeRef.current;
 
-    physics.addBody(holeElement);
-  }, [physics]);
+    // Check if the target element is a DOM element
+    if (holeElement != null && holeElement instanceof HTMLElement) {
+      // The target element is a DOM element
+    } else {
+      // The target element is not a DOM element
+      // Throw an error
+      throw new Error('Target container is not a DOM element');
+    }
+  }, []);
 
   return (
-    <HoleState ref={holeRef} />
+    <div ref={holeRef}>
+      <HoleState />
+    </div>
   );
 };
 
