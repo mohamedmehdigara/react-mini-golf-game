@@ -1,15 +1,17 @@
 // App.js
 
-import React from 'react';
+import React, { memo } from 'react';
 import HoleContainer from './components/HoleContainer';
 
-function App() {
-  // Memoize the HoleContainer component to prevent it from re-rendering unnecessarily.
-  const HoleContainerMemoized = React.memo(HoleContainer);
+// Memoize the HoleContainer component to prevent it from re-rendering unnecessarily.
+// This will improve the performance of your application.
+const MemoizedHoleContainer = memo(HoleContainer);
 
+function App() {
   return (
     <div>
-      <HoleContainerMemoized />
+      <h1>Mini Golf</h1>
+      <MemoizedHoleContainer />
     </div>
   );
 }

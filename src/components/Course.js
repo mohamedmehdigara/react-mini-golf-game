@@ -34,9 +34,11 @@ const Course = () => {
   };
 
   // Improved the rendering of the Hole component to pass the current hole number and the handleHoleCompletion callback function as props.
+  // Also added a key prop to the Hole component to improve performance.
   return (
     <StyledCourse>
       <Hole
+        key={currentHole}
         number={currentHole}
         onHoleCompleted={handleHoleCompletion}
       />
