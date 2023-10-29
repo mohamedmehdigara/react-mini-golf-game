@@ -1,13 +1,16 @@
+
+// App.js
+
 import React from 'react';
 import { Physics } from 'react-physics';
-import HoleContainer from './components/HoleContainer';
+import HoleState from './components/HoleState';
 
 function App() {
-  const physics = new Physics();
+  const physics = Physics();
 
   return (
     <div>
-      <HoleContainer physics={physics} />
+      <HoleState physics={physics} />
     </div>
   );
 }
