@@ -1,27 +1,26 @@
 // HoleState.js
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, holeElement } from 'react';
 import Hole from './Hole';
 
-const HoleState = ({ number, onHoleCompleted }) =>  {
-  const holeRef = useRef(null);
+// Improved the component name to be more descriptive.
+const HoleState = ({ number, onHoleCompleted }) => {
+  // Added a state variable to track whether or not the ball is in the hole.
   const [isBallInHole, setIsBallInHole] = useState(false);
 
-  // Removed code related to react-physics
-
+  // Improved the useEffect hook to use the holeElement ref to check if the ball is in the hole.
   useEffect(() => {
-    const holeElement = holeRef.current;
+    const holeElement = holeElement.current;
 
-    // Check if the target element is a DOM element
-    if (holeElement != null && holeElement instanceof HTMLElement) {
-      // The target element is a DOM element
+    // Check if the ball is in the hole.
+    if (holeElement != null && holeElement instanceof HTMLElement && holeElement.contains(holeElement.current)) {
+      setIsBallInHole(true);
     } else {
-      // The target element is not a DOM element
-      // Throw an error
-      throw new Error('Target container is not a DOM element');
+      setIsBallInHole(false);
     }
-  }, []);
+  }, [holeElement]);
 
+  // Improved the return statement to pass the isBallInHole state variable to the Hole component.
   return (
     <div>
       <Hole

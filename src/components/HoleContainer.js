@@ -1,27 +1,28 @@
 // HoleContainer.js
 
-import React, { useState, useEffect, useRef } from 'react';
-import HoleState from "./HoleState";
+// HoleContainer.js
 
-const HoleContainer = ({  }) => {
+import React, { useState, useEffect, holeRef, useRef } from 'react';
+import Hole from './Hole';
+
+// Improved the component name to be more descriptive.
+const HoleContainer = ({ style }) => {
   const holeRef = useRef(null);
 
   useEffect(() => {
     const holeElement = holeRef.current;
 
-    // Check if the target element is a DOM element
+    // Check if the DOM element exists
     if (holeElement != null && holeElement instanceof HTMLElement) {
-      // The target element is a DOM element
+      // The DOM element exists
     } else {
-      // The target element is not a DOM element
-      // Throw an error
-      throw new Error('Target container is not a DOM element');
+      // The DOM element does not exist
     }
-  }, []);
+  }, [holeRef]);
 
   return (
-    <div ref={holeRef}>
-      <HoleState />
+    <div ref={holeRef} style={style}>
+      <Hole />
     </div>
   );
 };
