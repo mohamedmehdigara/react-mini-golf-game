@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Course from './components/Course';
-import Obstacle from './components/Obstacle';
-import Scoring from './components/Scoring';
+import Multiplayer from './components/Multiplayer';
+import Physics from './components/Physics';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -14,12 +13,23 @@ const AppWrapper = styled.div`
 `;
 
 function App() {
+  const [physics, setPhysics] = useState(null);
+
+  useEffect(() => {
+    // Initialize the physics engine.
+    const newPhysics = new Physics();
+
+    // Set the physics state.
+    setPhysics(newPhysics);
+  }, []);
+
+  if (!physics) {
+    return null;
+  }
+
   return (
     <AppWrapper>
-      <Course />
-      <Obstacle x={100} y={100} />
-      <Obstacle x={200} y={200} />
-      <Scoring score={0} />
+      <Multiplayer physics={physics} />
     </AppWrapper>
   );
 }
