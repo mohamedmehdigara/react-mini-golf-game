@@ -1,18 +1,26 @@
-// App.js
+import React from 'react';
+import styled from 'styled-components';
+import Course from './components/Course';
+import Obstacle from './components/Obstacle';
+import Scoring from './components/Scoring';
 
-import React, { memo } from 'react';
-import HoleContainer from './components/HoleContainer';
-
-// Memoize the HoleContainer component to prevent it from re-rendering unnecessarily.
-// This will improve the performance of your application.
-const MemoizedHoleContainer = memo(HoleContainer);
+const AppWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 function App() {
   return (
-    <div>
-      <h1>Mini Golf</h1>
-      <MemoizedHoleContainer />
-    </div>
+    <AppWrapper>
+      <Course />
+      <Obstacle x={100} y={100} />
+      <Obstacle x={200} y={200} />
+      <Scoring score={0} />
+    </AppWrapper>
   );
 }
 
