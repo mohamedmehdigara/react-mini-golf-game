@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { PhysicsEngine } from './components/Physics';
 import styled from 'styled-components';
 import Multiplayer from './components/Multiplayer';
-import Physics from './components/Physics';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -16,8 +16,8 @@ function App() {
   const [physics, setPhysics] = useState(null);
 
   useEffect(() => {
-    // Initialize the physics engine.
-    const newPhysics = new Physics();
+    // Create a new physics engine instance.
+    const newPhysics = new PhysicsEngine();
 
     // Set the physics state.
     setPhysics(newPhysics);

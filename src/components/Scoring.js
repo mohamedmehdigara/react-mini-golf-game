@@ -1,22 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 
-const ScoringWrapper = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: white;
-  border: 1px solid black;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-`;
+const Physics = ({ physicsEngine }) => {
+  const [ballPosition, setBallPosition] = useState({ x: 0, y: 0 });
 
-function Scoring({ score }) {
+  useEffect(() => {
+    // Update the ball's position every frame.
+    const intervalId = setInterval(() => {
+      const newBallPosition = physicsEngine.update(ballPosition);
+      setBallPosition(newBallPosition);
+    }, 16);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [physicsEngine]);
+
+  // Render the ball at the current position.
   return (
-    <ScoringWrapper>
-      <h2>Score: {score}</h2>
-    </ScoringWrapper>
+    <div style={{ position: 'absolute', left: ballPosition.x, top: ballPosition.y }}>
+      <img src="/ball.png" alt="Ball" />
+    </div>
   );
-}
+};
 
-export default Scoring;
+export default Physics;
